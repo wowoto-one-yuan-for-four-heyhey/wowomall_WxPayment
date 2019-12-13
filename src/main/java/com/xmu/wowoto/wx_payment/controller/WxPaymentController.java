@@ -1,23 +1,23 @@
 package com.xmu.wowoto.wx_payment.controller;
 
-import com.xmu.wowoto.wx_payment.controller.vo.WxPaymentVo;
 import com.xmu.wowoto.wx_payment.domain.Payment;
 import com.xmu.wowoto.wx_payment.domain.WxPayment;
 import com.xmu.wowoto.wx_payment.service.WxPaymentService;
-import com.xmu.wowoto.wx_payment.util.ResponseUtil;
+import com.xmu.wowoto.wx_payment.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
 
 @RestController
-@RequestMapping("/wxPaymentService")
+@RequestMapping("wxPaymentService")
 public class WxPaymentController {
 
     @Autowired
     WxPaymentService wxPaymentService;
 
+    @Autowired
+    PaymentService paymentService;
 
     /**
      * 支付模块调用此方法模拟微信统一支付api
@@ -39,7 +39,6 @@ public class WxPaymentController {
         return wxPaymentWithPrepayId.getPrepayId();
     }
 
-
     /**
      * 用户发起最终支付
      * 此方法将调用Payment模块的updatePayment方法修改支付状态等信息
@@ -50,24 +49,28 @@ public class WxPaymentController {
      * @return updateWxPaymentVo
      */
     @PutMapping("wxpayment/{id}")
-    public Object requestWxPayment(@PathVariable("id") Integer prepay_id){}
-    @PostMapping("wxPayment")
-    public String addWxPayment(WxPaymentVo wxPaymentVo){
-        Integer orderId=wxPaymentVo.getOrderId();
-        String msg=wxPaymentVo.getActualPrice().toString();
-        System.out.println("微信收款"+msg+"元");
-        String ret="wx"+orderId.toString();
-        return ret;
+    public Object requestWxPayment(@PathVariable("id") String prepay_id, Integer payChannel, LocalDateTime endTime){
+        // 判断支付是否超时
+            // 获取当前时间
+        LocalDateTime currentTime;
+        currentTime = LocalDateTime.now();
+        boolean successfulPayment;
+        if(!currentTime.isBefore(endTime)){    // 如果超时
+            // 本次支付失效
+            successfulPayment = false;
+        }
+        else{    // 如果不超时
+            // 本次支付成功
+            // TODO: 扣款（假装有扣款orz）
+            successfulPayment = true;
+        }
+        WxPayment wxPayment = new WxPayment();
+        Payment payment;
+        payment = paymentService.updatePayment(prepay_id, payChannel, successfulPayment);
+        wxPayment.setPrepayId(payment.getPaySn());
+        wxPayment.setPayment(payment);
+
+        return wxPayment;
     }
 
-    @PutMapping("wxPayment")
-    public Object doPayment(String prePayId){
-        if(prePayId==null){
-            return ResponseUtil.fail(402,"bad params!");
-        }
-        else{
-        //@TODO 向payment发出修改请求
-        return ResponseUtil.ok();
-        }
-    }
 }
