@@ -1,4 +1,4 @@
-package com.xmu.wowoto.wx_payment.util;
+package com.xmu.wowoto.wxpayment.util;
 
 
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package com.xmu.wowoto.wx_payment.controller.vo;
+package com.xmu.wowoto.wxpayment.controller.vo;
 
 import java.math.BigDecimal;
 

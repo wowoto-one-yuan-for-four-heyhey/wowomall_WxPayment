@@ -1,4 +1,4 @@
-package com.xmu.wowoto.wx_payment.domain;
+package com.xmu.wowoto.wxpayment.domain;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.xmu.wowoto.wx_payment;
+package com.xmu.wowoto.wxpayment;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

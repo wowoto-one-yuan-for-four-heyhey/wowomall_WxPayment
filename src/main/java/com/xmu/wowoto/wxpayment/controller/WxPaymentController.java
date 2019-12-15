@@ -1,9 +1,9 @@
-package com.xmu.wowoto.wx_payment.controller;
+package com.xmu.wowoto.wxpayment.controller;
 
-import com.xmu.wowoto.wx_payment.domain.Payment;
-import com.xmu.wowoto.wx_payment.domain.WxPayment;
-import com.xmu.wowoto.wx_payment.service.WxPaymentService;
-import com.xmu.wowoto.wx_payment.service.PaymentService;
+import com.xmu.wowoto.wxpayment.domain.Payment;
+import com.xmu.wowoto.wxpayment.domain.WxPayment;
+import com.xmu.wowoto.wxpayment.service.WxPaymentService;
+import com.xmu.wowoto.wxpayment.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,13 +49,13 @@ public class WxPaymentController {
      * @return updateWxPaymentVo
      */
     @PutMapping("wxpayment/{id}")
-    public Object requestWxPayment(@PathVariable("id") String prepay_id, Integer payChannel, LocalDateTime endTime){
+    public Object requestWxPayment(@PathVariable("id") String prepay_id, LocalDateTime endTime){
         // 判断支付是否超时
             // 获取当前时间
         LocalDateTime currentTime;
         currentTime = LocalDateTime.now();
         boolean successfulPayment;
-        if(!currentTime.isBefore(endTime)){    // 如果超时
+        if(!currentTime.isBefore(endTime)){
             // 本次支付失效
             successfulPayment = false;
         }
@@ -66,7 +66,7 @@ public class WxPaymentController {
         }
         WxPayment wxPayment = new WxPayment();
         Payment payment;
-        payment = paymentService.updatePayment(prepay_id, payChannel, successfulPayment);
+        payment = paymentService.updatePayment(prepay_id, successfulPayment);
         wxPayment.setPrepayId(payment.getPaySn());
         wxPayment.setPayment(payment);
 

@@ -1,6 +1,6 @@
-package com.xmu.wowoto.wx_payment.service;
+package com.xmu.wowoto.wxpayment.service;
 
-import com.xmu.wowoto.wx_payment.domain.Payment;
+import com.xmu.wowoto.wxpayment.domain.Payment;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,6 +16,6 @@ public interface PaymentService {
      * @return Payment
      */
     @PutMapping("payment/{id}")
-    public Payment updatePayment(@PathVariable("id") String prepay_id, Integer payChannel, boolean successfulPayment);
+    Payment updatePayment(@PathVariable("id") String prepay_id, boolean successfulPayment);
 
 }

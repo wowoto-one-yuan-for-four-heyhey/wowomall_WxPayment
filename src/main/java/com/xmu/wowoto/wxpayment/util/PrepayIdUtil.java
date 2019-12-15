@@ -1,6 +1,6 @@
-package com.xmu.wowoto.wx_payment.util;
+package com.xmu.wowoto.wxpayment.util;
 
-import com.xmu.wowoto.wx_payment.domain.WxPayment;
+import com.xmu.wowoto.wxpayment.domain.WxPayment;
 
 public class PrepayIdUtil {
 
