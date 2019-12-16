@@ -16,6 +16,6 @@ public interface PaymentService {
      * @return Payment
      */
     @PutMapping("payment/{id}")
-    Payment updatePayment(@PathVariable("id") String prepay_id, boolean successfulPayment);
+    Payment updatePayment(@PathVariable("id") String prepay_id, boolean successfulPayment, String operationType);
 
 }
