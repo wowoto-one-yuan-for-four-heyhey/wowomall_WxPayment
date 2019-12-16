@@ -88,7 +88,7 @@ public class WxPaymentController {
      * @return
      */
     @PutMapping("wxpayment/{id}/refund")
-    public Object refund(@PathVariable String refundWhom, String refundPaymentPaySn, BigDecimal actualPrice){
+    public Object refund(@PathVariable("id") String refundWhom, String refundPaymentPaySn, BigDecimal actualPrice){
         // TODO 将退款金额退给相应用户，并根据refundWhom查找wxpayment表的对应记录，修改其状态（假装有表），返回的记录的id，存储在retWxPaymentId中
         // TODO 判断retWxPaymentId合理性后，根据retWxPaymentId查找对应记录，返回的WxPayment实例存储在retWxPayment中
         Integer retWxPaymentId;
