@@ -5,7 +5,6 @@ import com.xmu.wowoto.wxpayment.domain.WxPayment;
 import com.xmu.wowoto.wxpayment.service.WxPaymentService;
 import com.xmu.wowoto.wxpayment.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
