@@ -4,6 +4,7 @@ import com.xmu.wowoto.wxpayment.domain.Payment;
 import com.xmu.wowoto.wxpayment.domain.WxPayment;
 import com.xmu.wowoto.wxpayment.service.WxPaymentService;
 import com.xmu.wowoto.wxpayment.service.PaymentService;
+import com.xmu.wowoto.wxpayment.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,7 @@ public class WxPaymentController {
      * @return String
      */
     @PostMapping("wxpayment")
-    public String useWxPay(Payment payment){
+    public Object useWxPay(Payment payment){
         // unifiedWxPayment
         WxPayment wxPayment = new WxPayment();
         // prepayId
@@ -37,7 +38,7 @@ public class WxPaymentController {
         WxPayment wxPaymentWithPrepayId;
         wxPaymentWithPrepayId = wxPaymentService.addWxPayment(wxPayment);
 
-        return wxPaymentWithPrepayId.getPrepayId();
+        return ResponseUtil.ok(wxPaymentWithPrepayId.getPrepayId());
     }
 
     /**
@@ -90,7 +91,7 @@ public class WxPaymentController {
     public Object refund(@PathVariable("id") String refundWhom, String refundPaymentPaySn, BigDecimal actualPrice){
         // TODO 将退款金额退给相应用户，并根据refundWhom查找wxpayment表的对应记录，修改其状态（假装有表），返回的记录的id，存储在retWxPaymentId中
         // TODO 判断retWxPaymentId合理性后，根据retWxPaymentId查找对应记录，返回的WxPayment实例存储在retWxPayment中
-        Integer retWxPaymentId;
+
         WxPayment retWxPayment = new WxPayment();
 
         Payment payment = paymentService.updatePayment(refundPaymentPaySn, true, "refund");
