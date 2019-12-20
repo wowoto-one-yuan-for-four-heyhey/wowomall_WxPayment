@@ -7,8 +7,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * @Author: Tens
+ * @Description:
+ * @Date: 2019/12/20 19:41
+ */
 @Service
-public interface PaymentService {
+@FeignClient("paymentService")
+public interface RemotePaymentService {
 
     /**
      * （模拟的）微信后台调用此方法修改订单状态
@@ -17,6 +23,7 @@ public interface PaymentService {
      * @param prepay_id：预支付订单号
      * @return Payment
      */
-    Payment updatePayment(@PathVariable("id") String prepay_id, @RequestParam boolean successfulPayment,@RequestParam String operationType);
+    @PutMapping("payment/{id}/status")
+    String updatePayment(@PathVariable("id") String prepay_id, @RequestParam boolean successfulPayment, @RequestParam String operationType);
 
 }

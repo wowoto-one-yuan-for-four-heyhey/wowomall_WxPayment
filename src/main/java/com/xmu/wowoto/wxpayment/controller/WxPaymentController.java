@@ -59,7 +59,7 @@ public class WxPaymentController {
         wxPayment.setPrepayId(payment.getPaySn());
         wxPayment.setPayment(payment);
 
-        return wxPayment;
+        return ResponseUtil.ok(wxPayment);
     }
 
     /**
@@ -82,6 +82,8 @@ public class WxPaymentController {
 
         Payment payment = paymentService.updatePayment(refundPaymentPaySn, true, "refund");
 
+        retWxPayment.setPayment(payment);
+        retWxPayment.setPrepayId(payment.getPaySn());
         return retWxPayment;
     }
 

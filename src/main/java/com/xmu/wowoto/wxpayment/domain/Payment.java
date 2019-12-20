@@ -20,7 +20,7 @@ public class Payment {
     /**
      * 是否付款成功,0不成功，1成功
      */
-    private Boolean isSuccessful;
+    private Integer statusCode;
     /**
      * 付款时间
      */
@@ -71,13 +71,6 @@ public class Payment {
         this.payChannel = payChannel;
     }
 
-    public Boolean getSuccessful() {
-        return isSuccessful;
-    }
-
-    public void setSuccessful(Boolean successful) {
-        isSuccessful = successful;
-    }
 
     public LocalDateTime getPayTime() {
         return payTime;
@@ -144,26 +137,13 @@ public class Payment {
     }
 
 
-
-    @Override
-    public String toString() {
-        return "Payment{" +
-                "id=" + id +
-                ", actualPrice=" + actualPrice +
-                ", payChannel=" + payChannel +
-                ", isSuccessful=" + isSuccessful +
-                ", payTime=" + payTime +
-                ", paySn='" + paySn + '\'' +
-                ", beginTime=" + beginTime +
-                ", endTime=" + endTime +
-                ", orderId=" + orderId +
-                ", gmtCreate=" + gmtCreate +
-                ", gmtModified=" + gmtModified +
-                ", beDeleted=" + beDeleted +
-                '}';
+    public Integer getStatusCode() {
+        return statusCode;
     }
 
-
+    public void setStatusCode(Integer statusCode) {
+        this.statusCode = statusCode;
+    }
 
     @Override
     public boolean equals(Object o) {
