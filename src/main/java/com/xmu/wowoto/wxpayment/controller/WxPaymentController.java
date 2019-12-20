@@ -9,10 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @RestController
-@RequestMapping("wxPaymentService")
+@RequestMapping("")
 public class WxPaymentController {
 
     @Autowired
@@ -48,25 +47,12 @@ public class WxPaymentController {
      * 同时，调用此方法后，前端应显示当前（支付状态），商品，商品全称，支付时间，支付方式，交易单号，商户单号等信息给用户
      *
      * @param prepay_id 预支付标识
-     * @param endTime 支付结束时间
      * @return WxPayment
      */
     @PutMapping("wxpayment/{id}")
-    public Object requestWxPayment(@PathVariable("id") String prepay_id, LocalDateTime endTime){
-        // 判断支付是否超时
-            // 获取当前时间
-        LocalDateTime currentTime;
-        currentTime = LocalDateTime.now();
+    public Object requestWxPayment(@PathVariable("id") String prepay_id){
         boolean successfulPayment;
-        if(!currentTime.isBefore(endTime)){
-            // 本次支付失效
-            successfulPayment = false;
-        }
-        else{    // 如果不超时
-            // 本次支付成功
-            // TODO: 扣款（假装有扣款orz）
-            successfulPayment = true;
-        }
+        successfulPayment = true;
         WxPayment wxPayment = new WxPayment();
         Payment payment;
         payment = paymentService.updatePayment(prepay_id, successfulPayment, "pay");

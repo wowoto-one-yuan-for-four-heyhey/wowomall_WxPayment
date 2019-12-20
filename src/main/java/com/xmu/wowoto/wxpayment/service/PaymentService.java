@@ -4,6 +4,7 @@ import com.xmu.wowoto.wxpayment.domain.Payment;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient("paymentService")
 public interface PaymentService {
@@ -15,7 +16,7 @@ public interface PaymentService {
      * @param prepay_id：预支付订单号
      * @return Payment
      */
-    @PutMapping("payment/{id}")
-    Payment updatePayment(@PathVariable("id") String prepay_id, boolean successfulPayment, String operationType);
+    @PutMapping("payment/{id}/status")
+    Payment updatePayment(@PathVariable("id") String prepay_id, @RequestParam boolean successfulPayment,@RequestParam String operationType);
 
 }
