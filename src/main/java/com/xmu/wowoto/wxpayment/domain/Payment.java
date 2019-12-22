@@ -6,6 +6,12 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+
+/**
+ * @Author: Tens
+ * @Description:
+ * @Date: 2019/12/20 19:41
+ */
 @Alias("payment")
 public class Payment {
     private Integer id;

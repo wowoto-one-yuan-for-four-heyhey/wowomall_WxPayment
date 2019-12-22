@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 
+
+/**
+ * @Author: Tens
+ * @Description:
+ * @Date: 2019/12/20 19:41
+ */
 @RestController
 @RequestMapping("")
 public class WxPaymentController {
@@ -46,16 +52,16 @@ public class WxPaymentController {
      * updatePayment方法进而调用Order模块的updateOrder方法修改订单状态等信息
      * 同时，调用此方法后，前端应显示当前（支付状态），商品，商品全称，支付时间，支付方式，交易单号，商户单号等信息给用户
      *
-     * @param prepay_id 预支付标识
+     * @param prepayId 预支付标识
      * @return WxPayment
      */
     @PutMapping("wxpayment/{id}")
-    public Object requestWxPayment(@PathVariable("id") String prepay_id){
+    public Object requestWxPayment(@PathVariable("id") String prepayId){
         boolean successfulPayment;
         successfulPayment = true;
         WxPayment wxPayment = new WxPayment();
         Payment payment;
-        payment = paymentService.updatePayment(prepay_id, successfulPayment, "pay");
+        payment = paymentService.updatePayment(prepayId, successfulPayment, "pay");
         wxPayment.setPrepayId(payment.getPaySn());
         wxPayment.setPayment(payment);
 

@@ -18,8 +18,8 @@ public class PaymentServiceImpl implements PaymentService {
     RemotePaymentService remotePaymentService;
 
     @Override
-    public Payment updatePayment(String prepay_id, boolean successfulPayment, String operationType) {
-        String json = remotePaymentService.updatePayment(prepay_id, successfulPayment, operationType);
+    public Payment updatePayment(String prepayId, boolean successfulPayment, String operationType) {
+        String json = remotePaymentService.updatePayment(prepayId, successfulPayment, operationType);
         return JacksonUtil.parseObject(json, "data", Payment.class);
     }
 }

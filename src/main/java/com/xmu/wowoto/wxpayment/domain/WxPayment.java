@@ -1,5 +1,12 @@
 package com.xmu.wowoto.wxpayment.domain;
 
+
+
+/**
+ * @Author: Tens
+ * @Description:
+ * @Date: 2019/12/20 19:41
+ */
 public class WxPayment {
 
     private String prepayId;
@@ -21,34 +28,21 @@ public class WxPayment {
         this.payment = payment;
     }
 
+    @Override
     public boolean equals(final Object o) {
-        if (o == this) return true;
-        if (!(o instanceof WxPayment)) return false;
-        final WxPayment other = (WxPayment) o;
-        if (!other.canEqual((Object) this)) return false;
-        final Object this$prepayId = this.getPrepayId();
-        final Object other$prepayId = other.getPrepayId();
-        if (this$prepayId == null ? other$prepayId != null : !this$prepayId.equals(other$prepayId)) return false;
-        final Object this$payment = this.getPayment();
-        final Object other$payment = other.getPayment();
-        if (this$payment == null ? other$payment != null : !this$payment.equals(other$payment)) return false;
-        return true;
+       return true;
     }
 
     protected boolean canEqual(final Object other) {
         return other instanceof WxPayment;
     }
 
+    @Override
     public int hashCode() {
-        final int PRIME = 59;
-        int result = 1;
-        final Object $prepayId = this.getPrepayId();
-        result = result * PRIME + ($prepayId == null ? 43 : $prepayId.hashCode());
-        final Object $payment = this.getPayment();
-        result = result * PRIME + ($payment == null ? 43 : $payment.hashCode());
-        return result;
+        return 0;
     }
 
+    @Override
     public String toString() {
         return "WxPayment(prepayId=" + this.getPrepayId() + ", payment=" + this.getPayment() + ")";
     }

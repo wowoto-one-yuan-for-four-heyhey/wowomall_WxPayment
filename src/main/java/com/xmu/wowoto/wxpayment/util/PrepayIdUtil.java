@@ -4,6 +4,12 @@ import com.xmu.wowoto.wxpayment.domain.WxPayment;
 
 import java.util.Random;
 
+
+/**
+ * @Author: Tens
+ * @Description:
+ * @Date: 2019/12/20 19:41
+ */
 public class PrepayIdUtil {
 
     static public String encodePrepayId(WxPayment wxPayment){

@@ -7,6 +7,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
+/**
+ * @Author: Tens
+ * @Description:
+ * @Date: 2019/12/20 19:41
+ */
 @Service
 public interface PaymentService {
 
@@ -14,9 +20,11 @@ public interface PaymentService {
      * （模拟的）微信后台调用此方法修改订单状态
      * 此方法还会调用order模块的updateOrder方法，修改订单状态
      *
-     * @param prepay_id：预支付订单号
+     * @param prepayId：预支付订单号
+     * @param successfulPayment
+     * @param operationType
      * @return Payment
      */
-    Payment updatePayment(@PathVariable("id") String prepay_id, @RequestParam boolean successfulPayment,@RequestParam String operationType);
+    Payment updatePayment(@PathVariable("id") String prepayId, @RequestParam boolean successfulPayment,@RequestParam String operationType);
 
 }
