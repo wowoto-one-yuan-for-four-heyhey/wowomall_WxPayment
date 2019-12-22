@@ -3,6 +3,7 @@ package com.xmu.wowoto.wxpayment.controller.vo;
 import java.math.BigDecimal;
 
 
+
 /**
  * @Author: Tens
  * @Description:
